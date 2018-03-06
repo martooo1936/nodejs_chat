@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link type="text/css" rel="stylesheet" href="beauty.css"/>
+    <meta charset="UTF-8">
+    <title>Chat Application</title>
+    <style>
+
+    </style>
+
+</head>
+<body>
+<div id="log"></div>
+<div id="sendCtrls">
+    <input type="text" placeholder="Type your message here" id = "text">
+
+    <button id="sendBtn"> Send</button>
+     </div>
+<script>
+    var name = prompt('Enter a username');
+
+    var sock = new WebSocket("ws://localhost:5001");
+
+    sock.onopen = function(){
+        sock.send(JSON.stringify({
+         type: "name",
+         data: name
+        }));
+
+    }
+
+    var log = document.getElementById('log');
+    sock.onmessage = function (event) {
+        console.log(event);
+        var json = JSON.parse(event.data);
+
+        log.innerHTML += json.name+": "+json.data+"<br>";
+    };
+
+    document.querySelector('button').onclick = function () {
+       var text = document.getElementById('text').value;
+       //sock.send(text);
+        sock.send(JSON.stringify({
+          type: "message",
+          data: text
+        }));
+        log.innerHTML +="You: " + text +"<br>";3
+
+
+    }
+</script>
+</body>
+</html>

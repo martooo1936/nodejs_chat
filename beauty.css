@@ -1,0 +1,31 @@
+
+body{
+    background-image:url("cool-computer-keyboards-wallpaper-2.jpg");
+
+}
+
+div#log {
+    width: 900px;
+    height: 500px;
+    margin: 0 auto;
+    border: 10px whitesmoke;
+    border-radius: 7px;
+    overflow-y: scroll;
+    background:white;
+
+
+
+
+}
+div#sendCtrls {
+    width: 300px;
+    margin: 30px auto;
+
+
+
+
+}
+button#sendBtn
+{
+    border-radius: 10px;
+}
